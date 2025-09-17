@@ -1,10 +1,13 @@
 # 🚑 Ambulance Dispatch System
 
 ## 🔖 Project Title & Description
-**Ambulance Dispatch System** — a web application built with **Next.js** and **Supabase** that enables individuals to request ambulance services and gives administrators tools to manage dispatch, patient records, and service history.  
 
-**Who it's for:**  
-- **Users (Patients/Callers):** Need a simple way to request an ambulance quickly.  
+**Ambulance Service Provider** — a web application built with **Next.js** and **Supabase** that enables individuals to request ambulance services and gives administrators tools to manage dispatch, patient records, and service history.  
+
+**Who it's for:**
+
+- **Users (Patients/Callers):** Need a simple way to request an ambulance quickly.
+
 - **Administrators (Dispatchers/Managers):** Need tools to track requests, assign ambulances, and manage service history.  
 
 **Why it matters:** Streamlines emergency workflows, improves response times, and organizes patient/service records for better healthcare outcomes.  
@@ -23,12 +26,12 @@
 
 ## 🧠 AI Integration Strategy
 
-- **Code Generation:** Use AI to scaffold API routes (`app/api/*/route.ts`) and React components. Provide Supabase schema + file tree for context.  
+- **Code Generation:** Use AI to scaffold API routes (`api/*/route.ts`) and React components. Provide Supabase schema + file tree for context.  
 - **Testing:** AI-assisted unit and E2E tests. Example: “Generate 5 Jest tests for this request form, covering required fields and invalid input.”  
 - **Documentation:** AI maintains inline comments, docstrings, and keeps README + schema docs updated when features change.  
 - **Context-aware Prompts:** Supply AI with:
   - DB schema migrations  
-  - Next.js file structure (`tree`)  
+  - Next.js file structure (e.g., /src, /components, /api, /docs)
   - Diffs for new features  
 
 ---
@@ -44,12 +47,14 @@
 ## 📦 Project Scope
 
 ### Included
+
 - User-facing ambulance request form (`/request`)  
 - Admin dashboard for requests + ambulance availability  
 - Ambulance assignment flow  
 - Basic patient records & service history  
 
 ### Excluded (Future Enhancements)
+
 - Real-time GPS streaming  
 - Hospital integration  
 - Payment processing  
@@ -68,6 +73,7 @@ create table requests (
   address text not null,
   latitude double precision,
   longitude double precision,
+  user_id uuid references users(id),
   emergency_description text not null,
   priority text check (priority in ('low','medium','high')) default 'medium',
   status text check (status in ('pending','assigned','dispatched','arrived','completed')) default 'pending',

@@ -1,0 +1,2 @@
+I’ve created a new Next.js ambulance-service-provide app project. I want to prepare it for upcoming features in #file:README.md . Help me scaffold an initial folder structure and placeholder files for those areas. Use Shadcn components.
+
